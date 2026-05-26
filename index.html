@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giulia R — Social Media Strategy & Creative Execution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-light: #111111;
+            --bg-card: #161616;
+            --text: #f5f5f5;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --accent: #e8d5b7;
+            --accent-warm: #d4a574;
+            --accent-cool: #7eb8a2;
+            --accent-vibrant: #c9a96e;
+            --border: #222222;
+            --border-light: #2a2a2a;
+            --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1510 50%, #0a0a0a 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            padding: 15px 40px;
+            background: rgba(10, 10, 10, 0.95);
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--gradient-hero);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(126, 184, 162, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 24px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero-label {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 48px;
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--text);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(232, 213, 183, 0.2);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header { margin-bottom: 60px; }
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        .about {
+            background: var(--bg-light);
+            position: relative;
+        }
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+        .about-text p { margin-bottom: 24px; }
+        .about-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .about-highlight {
+            padding: 24px;
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            margin-top: 24px;
+            font-style: italic;
+            color: var(--text);
+        }
+        .about-visual { position: relative; }
+        .about-visual-inner {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border);
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .cap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cap-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .cap-card:hover::before { transform: scaleX(1); }
+        .cap-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .cap-icon {
+            width: 48px; height: 48px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .cap-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .cap-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .case-studies {
+            background: var(--bg-light);
+            position: relative;
+        }
+        .case-studies::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+        }
+        .case-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 60px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .case-card:hover {
+            border-color: var(--border-light);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+        .case-header {
+            padding: 40px 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .case-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .case-tag {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .tag-strategy { background: rgba(212, 165, 116, 0.15); color: var(--accent-warm); }
+        .tag-content { background: rgba(126, 184, 162, 0.15); color: var(--accent-cool); }
+        .tag-growth { background: rgba(201, 169, 110, 0.15); color: var(--accent-vibrant); }
+        .tag-b2b { background: rgba(136, 136, 136, 0.15); color: var(--text-muted); }
+        .case-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        .case-body { padding: 0 40px 40px; }
+        .case-section { margin-top: 32px; }
+        .case-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .case-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .case-text ul {
+            list-style: none;
+            padding: 0;
+        }
+        .case-text ul li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        .case-text ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Image Gallery for Case Studies */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .gallery-caption {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.85rem;
+        }
+        .calendar-table th {
+            background: var(--bg-card);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+        }
+        .calendar-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-muted);
+        }
+        .calendar-table tr:hover td { background: var(--bg-card); }
+
+        .caption-box {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 16px;
+            border-left: 3px solid var(--accent-cool);
+        }
+        .caption-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-cool);
+            margin-bottom: 8px;
+        }
+        .caption-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .caption-tags {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .caption-tag {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            background: var(--bg-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .result-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .result-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .result-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        .business-outcome {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(126, 184, 162, 0.1));
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .business-outcome i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+        .business-outcome-text {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .business-outcome-text strong { color: var(--accent); }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .before-after-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+        .before-after-card.before { border-left: 4px solid #c44; }
+        .before-after-card.after { border-left: 4px solid var(--accent-cool); }
+        .ba-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .ba-label.before-label { color: #c44; }
+        .ba-label.after-label { color: var(--accent-cool); }
+        .ba-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .ba-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .ba-why {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        .metrics-table th {
+            text-align: left;
+            padding: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border);
+        }
+        .metrics-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .metrics-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .community-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .community-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .comment-thread {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .comment-user {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .comment-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .comment-reply {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 12px;
+            border-left: 3px solid var(--accent-cool);
+        }
+        .comment-reply-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-cool);
+            margin-bottom: 6px;
+        }
+        .crisis-card {
+            background: linear-gradient(135deg, rgba(204, 68, 68, 0.05), rgba(204, 68, 68, 0.02));
+            border: 1px solid rgba(204, 68, 68, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .crisis-card h4 {
+            color: #c44;
+            margin-bottom: 16px;
+        }
+        .crisis-scenario {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .crisis-scenario-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #c44;
+            margin-bottom: 8px;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .ai-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .ai-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-cool));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--bg);
+            flex-shrink: 0;
+        }
+        .ai-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .ai-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .ai-positioning {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 32px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .ai-positioning p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .tool-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        .tool-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            section { padding: 60px 20px; }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .before-after { grid-template-columns: 1fr; }
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            .case-header, .case-body {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+            .image-gallery { grid-template-columns: 1fr; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-logo">Giulia R</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#performance">Performance</a></li>
+            <li><a href="#community">Community</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-label">Social Media Strategy & Creative Execution</div>
+            <h1>Giulia <span>R</span></h1>
+            <p class="hero-subtitle">Content That Earns Attention. Strategy That Earns Results.</p>
+            <p class="hero-tagline">From content ideas to measurable engagement.</p>
+            <div class="hero-ctas">
+                <a href="#work" class="btn-primary">
+                    <i class="fas fa-eye"></i> View Work
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-header">
+            <div class="section-label">About</div>
+            <h2 class="section-title">Strategist. Creator. Performance-Driven.</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I build <strong>social ecosystems</strong> where content strategy, creative execution, and community intelligence feed into each other. My work connects brand storytelling with platform algorithms and business KPIs — not vanity metrics.</p>
+                <p>With experience managing social media for wellness brands, CPG campaigns, millennial audiences, and B2B tech, I understand that <strong>content without strategy is noise</strong>, and strategy without execution is theory.</p>
+                <div class="about-highlight">
+                    "I use AI to compress production cycles and expand creative testing, never to replace brand voice or strategic judgment."
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="about-visual-inner">
+                    <div class="stat-row">
+                        <div>
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Years Managing Social</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="stat-number">US</div>
+                            <div class="stat-label">Client Focus</div>
+                        </div>
+                    </div>
+                    <div class="stat-row">
+                        <div>
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Industries Served</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Platforms Mastered</div>
+                        </div>
+                    </div>
+                    <div class="stat-row">
+                        <div>
+                            <div class="stat-number">6.2%</div>
+                            <div class="stat-label">Peak Engagement Rate</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Content Iterations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities">
+        <div class="section-header">
+            <div class="section-label">What I Do</div>
+            <h2 class="section-title">Capabilities</h2>
+            <p class="section-desc">Hybrid skillset spanning strategy, creation, and performance analysis.</p>
+        </div>
+        <div class="capabilities-grid">
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-chess"></i></div>
+                <div class="cap-title">Content Strategy & Funnel Design</div>
+                <div class="cap-desc">Building content ecosystems that move audiences from awareness to conversion through intentional touchpoints.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-pen-fancy"></i></div>
+                <div class="cap-title">Copywriting & Social SEO</div>
+                <div class="cap-desc">Writing for algorithms and humans simultaneously — keyword-optimized captions that still sound like a person wrote them.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-video"></i></div>
+                <div class="cap-title">Reels / Short-form Video</div>
+                <div class="cap-desc">Hook-first video creation with platform-native editing, sound selection, and trend adaptation.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-comments"></i></div>
+                <div class="cap-title">Community Management</div>
+                <div class="cap-desc">Turning comments and DMs into relationship-building opportunities and product feedback loops.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-users"></i></div>
+                <div class="cap-title">UGC & Ambassador Programs</div>
+                <div class="cap-desc">Designing hashtag campaigns and community incentives that turn customers into content creators.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-palette"></i></div>
+                <div class="cap-title">Canva / Adobe / CapCut</div>
+                <div class="cap-desc">Full production stack from quick-turn Canva assets to polished Adobe Premiere edits.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="cap-title">Performance Analysis</div>
+                <div class="cap-desc">Translating analytics into actionable strategy shifts — not just reporting numbers.</div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-robot"></i></div>
+                <div class="cap-title">AI-Assisted Workflows</div>
+                <div class="cap-desc">Using AI to accelerate ideation and iteration while maintaining creative and strategic control.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies" id="work">
+        <div class="section-header">
+            <div class="section-label">Selected Work</div>
+            <h2 class="section-title">Case Studies</h2>
+            <p class="section-desc">Real execution. Real platforms. Real business outcomes.</p>
+        </div>
+
+        <!-- ALAYA -->
+        <div class="case-card reveal">
+            <div class="case-header">
+                <div>
+                    <div class="case-meta">
+                        <span class="case-tag tag-strategy">Strategy</span>
+                        <span class="case-tag tag-content">Content</span>
+                        <span class="case-tag tag-growth">Growth</span>
+                    </div>
+                    <h3 class="case-title">ALAYA Studio — Wellness Brand Growth</h3>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-section">
+                    <div class="case-section-title">Strategy</div>
+                    <div class="case-text">
+                        <ul>
+                            <li>Content pillars: wellness, lifestyle, education, <strong>community (UGC)</strong></li>
+                            <li>Funnel design: awareness (Reels) → trust (carousels/education) → <strong>booking (Stories + DM automation)</strong></li>
+                            <li>Launched <strong>#AlayaFlow</strong> hashtag campaign generating organic posts from clients monthly, reducing production costs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Platform Logic</div>
+                    <div class="case-text">
+                        <ul>
+                            <li><strong>Instagram:</strong> Aspirational aesthetic + educational carousels + Reels for reach</li>
+                            <li><strong>Stories:</strong> Conversion layer — polls, Q&A, booking links, DM retargeting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Content Calendar</div>
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Platform</th>
+                                <th>Format</th>
+                                <th>Content</th>
+                                <th>Objective</th>
+                                <th>KPI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mon</td>
+                                <td>IG Reel</td>
+                                <td>Reel</td>
+                                <td>"3 morning stretches"</td>
+                                <td>Awareness</td>
+                                <td>3s views</td>
+                            </tr>
+                            <tr>
+                                <td>Wed</td>
+                                <td>IG</td>
+                                <td>Carousel</td>
+                                <td>"Benefits of consistent practice"</td>
+                                <td>Education</td>
+                                <td>Saves</td>
+                            </tr>
+                            <tr>
+                                <td>Fri</td>
+                                <td>IG Stories</td>
+                                <td>CTA series</td>
+                                <td>"Book this week's class"</td>
+                                <td>Conversion</td>
+                                <td>CTR link</td>
+                            </tr>
+                            <tr>
+                                <td>Sat</td>
+                                <td>IG</td>
+                                <td>UGC repost</td>
+                                <td>Client transformation</td>
+                                <td>Trust</td>
+                                <td>Shares</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Copy Examples</div>
+                    <div class="caption-box">
+                        <div class="caption-label">Awareness — Hook-first</div>
+                        <div class="caption-text">Your morning routine doesn't need to be 60 minutes to be effective. Here's what 10 conscious minutes actually changes.</div>
+                        <div class="caption-tags">
+                            <span class="caption-tag">#MorningFlow</span>
+                            <span class="caption-tag">#WellnessHabits</span>
+                            <span class="caption-tag">#YogaEveryDamnDay</span>
+                        </div>
+                    </div>
+                    <div class="caption-box" style="margin-top: 16px; border-left-color: var(--accent-warm);">
+                        <div class="caption-label" style="color: var(--accent-warm);">Education + Social SEO</div>
+                        <div class="caption-text">The difference between stretching and mobility work — and why your body needs both. Save this for your next recovery day. Your future self will thank you.</div>
+                        <div class="caption-tags">
+                            <span class="caption-tag">#MobilityTraining</span>
+                            <span class="caption-tag">#WellnessTips</span>
+                            <span class="caption-tag">#RecoveryRoutine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Results</div>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-number">6.2%</div>
+                            <div class="result-label">Engagement Rate<br><small>(industry avg: 1-3%)</small></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-number">1.9%</div>
+                            <div class="result-label">Story CTR<br><small>(link/booking)</small></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-number">~18%</div>
+                            <div class="result-label">DM to Booking<br><small>Conversion</small></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-number">30%</div>
+                            <div class="result-label">Production Cost<br><small>Reduction via UGC</small></div>
+                        </div>
+                    </div>
+                    <div class="business-outcome">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <div class="business-outcome-text">
+                            <strong>Business Outcome:</strong> Class bookings increased; repeat attendance improved; reduced dependency on paid ads for acquisition. Higher engagement translated directly into increased booking inquiries.
+                        </div>
+                    </div>
+                    <div class="business-outcome" style="background: var(--bg-card); margin-top: 12px;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent-cool);"></i>
+                        <div class="business-outcome-text">
+                            <strong style="color: var(--accent-cool);">Key Learning:</strong> Wellness audiences don't convert on the first touch. The funnel needed 3+ content types before booking behavior emerged. UGC became the trust accelerator we didn't know we needed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LUCKY STASH -->
+        <div class="case-card reveal">
+            <div class="case-header">
+                <div>
+                    <div class="case-meta">
+                        <span class="case-tag tag-strategy">Campaign</span>
+                        <span class="case-tag tag-content">Content</span>
+                        <span class="case-tag tag-growth">Growth</span>
+                    </div>
+                    <h3 class="case-title">Lucky Stash — Premium Botanical Tequila</h3>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-section">
+                    <div class="case-section-title">Strategy</div>
+                    <div class="case-text">
+                        <p>Lucky Stash's social media strategy is centered on <strong>differentiation</strong>, positioning the brand as a premium and unconventional tequila for individuals who seek distinct experiences and reject the ordinary. The narrative is built around the intersection of <strong>heritage and innovation</strong>, where the botanical expression becomes the core differentiator, while Blanco and Extra Añejo reinforce the brand's depth and legacy.</p>
+                        <p>Content direction follows a <strong>highly editorial approach</strong>, inspired by luxury, perfumery, and art — emphasizing sensory storytelling, composition, and visual refinement. Rather than mass appeal, the strategy intentionally targets a <strong>niche audience with a mindset-driven identity</strong> — individuals drawn to experimentation, creativity, and elevated consumption rituals.</p>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Content Creation with AI</div>
+                    <div class="case-text">
+                        <ul>
+                            <li>Used AI to generate <strong>20+ visual moodboards</strong> inspired by luxury perfumery and botanical art</li>
+                            <li>Curated the Instagram feed as a <strong>visual archive</strong> — each post designed as a standalone editorial piece</li>
+                            <li>Developed <strong>flavor-specific color palettes</strong> (botanical green, amber, deep gold) for visual consistency</li>
+                            <li>AI-assisted copywriting for <strong>sensory descriptors</strong> — translating taste into visual language</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Platform Adaptation</div>
+                    <div class="case-text">
+                        <ul>
+                            <li><strong>Instagram:</strong> Operates as a curated visual archive, showcasing brand aesthetics, botanical compositions, and storytelling. Each post functions as an editorial piece — not an ad.</li>
+                            <li><strong>TikTok:</strong> Focuses on narrative-driven content and behind-the-scenes processes to humanize the brand — from agave sourcing to botanical infusion techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Social SEO</div>
+                    <div class="case-text">
+                        Keywords woven into captions and text overlays: <strong>botanical tequila, premium spirits, craft distillation, sensory experience, elevated drinking, artisanal tequila, mixology ritual</strong>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Visual Work Samples</div>
+                    <div class="image-gallery">
+                        <div>
+                            <img src="assets/lucky-stash-1.jpg" alt="Lucky Stash Editorial Feed" class="gallery-img">
+                            <div class="gallery-caption">Curated Instagram feed — editorial aesthetic</div>
+                        </div>
+                        <div>
+                            <img src="assets/lucky-stash-2.jpg" alt="Lucky Stash Botanical Composition" class="gallery-img">
+                            <div class="gallery-caption">Botanical composition — sensory storytelling</div>
+                        </div>
+                        <div>
+                            <img src="assets/lucky-stash-3.jpg" alt="Lucky Stash Behind the Scenes" class="gallery-img">
+                            <div class="gallery-caption">Behind-the-scenes — distillation process</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Performance Focus</div>
+                    <div class="case-text">
+                        <ul>
+                            <li>Creating <strong>desire</strong> through visual refinement, not mass appeal</li>
+                            <li>Increasing <strong>saves and profile visits</strong> as intent signals</li>
+                            <li>Strengthening <strong>brand recall</strong> through consistent editorial identity</li>
+                            <li>Positioning Lucky Stash not just as a product, but as a <strong>statement of identity and taste</strong></li>
+                        </ul>
+                    </div>
+                    <div class="business-outcome">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <div class="business-outcome-text">
+                            <strong>Business Outcome:</strong> DMs shifted from price questions to purchase intent — qualifying intent improved significantly. Stronger purchase intent signals correlated with actual sales lift. Brand positioned as a lifestyle statement, not a commodity.
+                        </div>
+                    </div>
+                    <div class="business-outcome" style="background: var(--bg-card); margin-top: 12px;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent-cool);"></i>
+                        <div class="business-outcome-text">
+                            <strong style="color: var(--accent-cool);">Key Learning:</strong> In premium spirits, saves are the most underrated metric. They indicate intent more honestly than likes. We optimized content specifically for save behavior — and it worked. The editorial approach filtered out casual browsers and attracted the right audience.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THIRSTDAY -->
+        <div class="case-card reveal">
+            <div class="case-header">
+                <div>
+                    <div class="case-meta">
+                        <span class="case-tag tag-content">Content</span>
+                        <span class="case-tag tag-growth">Millennial</span>
+                    </div>
+                    <h3 class="case-title">Thirstday — Cultural Identity & Emotional Connection</h3>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-section">
+                    <div class="case-section-title">Strategy</div>
+                    <div class="case-text">
+                        <p>Thirstday's social media strategy is built around <strong>cultural identity and emotional connection</strong>, specifically targeting Mexican and Latino audiences in the U.S. Rather than relying on transient wellness trends, the brand positions itself through a <strong>reinterpretation of Mexican heritage</strong> — nostalgia, food, sobremesa, and shared social rituals — translated into a modern, visually compelling language.</p>
+                        <p>Content is designed to feel both <strong>familiar and elevated</strong>, blending playful indulgence with strong cultural references. Each product flavor is developed as a <strong>distinct personality</strong>, enabling scalable storytelling and audience segmentation across platforms.</p>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Content Creation with AI</div>
+                    <div class="case-text">
+                        <ul>
+                            <li>Used AI to develop <strong>flavor personalities</strong> — each SKU with distinct voice, color palette, and content archetype</li>
+                            <li>Curated the Instagram feed to reflect <strong>cultural nostalgia</strong> — warm tones, family moments, food-centric visuals</li>
+                            <li>AI-generated <strong>cultural reference libraries</strong> — from Loteria cards to vintage Mexican advertising</li>
+                            <li>Created <strong>shareable meme formats</strong> that resonate with bicultural millennial identity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Platform Adaptation</div>
+                    <div class="case-text">
+                        <ul>
+                            <li><strong>Instagram:</strong> Focuses on aesthetic storytelling and curated identity — warm, nostalgic visuals that feel like flipping through a family photo album. Heavy use of carousels for storytelling depth.</li>
+                            <li><strong>TikTok:</strong> Leans into cultural humor and relatable formats — "things that just make sense," "POV: you're at a Mexican family gathering," and flavor personality skits.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Social SEO</div>
+                    <div class="case-text">
+                        Keywords: <strong>mexican heritage, nostalgia, sobremesa, latino culture, bicultural identity, family rituals, food and drink, millennial nostalgia</strong>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Visual Work Samples</div>
+                    <div class="image-gallery">
+                        <div>
+                            <img src="assets/thirstday-1.jpg" alt="Thirstday Cultural Feed" class="gallery-img">
+                            <div class="gallery-caption">Cultural nostalgia — warm family-centric aesthetic</div>
+                        </div>
+                        <div>
+                            <img src="assets/thirstday-2.jpg" alt="Thirstday Flavor Personality" class="gallery-img">
+                            <div class="gallery-caption">Flavor personality — distinct visual identity per SKU</div>
+                        </div>
+                        <div>
+                            <img src="assets/thirstday-3.jpg" alt="Thirstday Shareable Content" class="gallery-img">
+                            <div class="gallery-caption">Shareable format — bicultural millennial humor</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Performance Focus</div>
+                    <div class="case-text">
+                        <ul>
+                            <li>Prioritizing <strong>shareability</strong> — content designed to be sent in group chats and family threads</li>
+                            <li>Building <strong>relatability</strong> through cultural specificity, not generic appeal</li>
+                            <li>Creating <strong>cultural resonance</strong> that converts through identity, not novelty</li>
+                            <li>Using a mix of lifestyle content, humor, and sensory visuals to drive engagement and brand affinity</li>
+                        </ul>
+                    </div>
+                    <div class="business-outcome">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <div class="business-outcome-text">
+                            <strong>Business Outcome:</strong> Comment sentiment shifted from product questions to brand affinity and cultural identification. Higher brand recall and shareability. Social data directly informed geographic expansion and new flavor development decisions.
+                        </div>
+                    </div>
+                    <div class="business-outcome" style="background: var(--bg-card); margin-top: 12px;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent-cool);"></i>
+                        <div class="business-outcome-text">
+                            <strong style="color: var(--accent-cool);">Key Learning:</strong> Millennial and Latino audiences detect inauthentic cultural references instantly. We only participated in trends and references where the brand voice had something genuine to add. Authenticity over virality. Identity over novelty.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master IoT -->
+        <div class="case-card reveal">
+            <div class="case-header">
+                <div>
+                    <div class="case-meta">
+                        <span class="case-tag tag-strategy">Strategy</span>
+                        <span class="case-tag tag-b2b">B2B</span>
+                    </div>
+                    <h3 class="case-title">Master IoT — B2B Tech Education</h3>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-section">
+                    <div class="case-section-title">Strategy</div>
+                    <div class="case-text">
+                        <ul>
+                            <li><strong>Translate complexity into clarity</strong> — no dumbing down, just better framing</li>
+                            <li>Position founder as <strong>thought leader</strong>, not salesperson</li>
+                            <li>LinkedIn-first with Instagram as visual support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Platform Logic</div>
+                    <div class="case-text">
+                        <ul>
+                            <li><strong>LinkedIn:</strong> Long-form carousels, founder POV posts, industry commentary</li>
+                            <li><strong>Instagram:</strong> Simplified infographics, "one concept per post" format</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Social SEO</div>
+                    <div class="case-text">
+                        Keywords: <strong>smart home automation, energy monitoring, IoT solutions, predictive maintenance, facility management tech</strong>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Content Examples</div>
+                    <div class="caption-box">
+                        <div class="caption-label">LinkedIn Carousel</div>
+                        <div class="caption-text">"5 IoT Metrics Every Facility Manager Should Track — and what they actually mean for your bottom line."</div>
+                    </div>
+                    <div class="caption-box" style="margin-top: 16px; border-left-color: var(--accent-warm);">
+                        <div class="caption-label" style="color: var(--accent-warm);">Founder POV Post</div>
+                        <div class="caption-text">"Why most smart building projects fail in month 3 (and how to prevent it). Spoiler: it's not the technology, it's the implementation strategy."</div>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Social Listening & Sales Enablement</div>
+                    <div class="case-text">
+                        Tracked LinkedIn comments for <strong>sales friction points</strong>. Created FAQ content based on recurring objections in DMs. Content became a <strong>silent salesperson</strong> — prospects arrived educated, shortening discovery calls.
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <div class="case-section-title">Results</div>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-number">3.5%</div>
+                            <div class="result-label">Engagement Rate<br><small>(strong for B2B tech)</small></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-number">+45%</div>
+                            <div class="result-label">Time on Content<br><small>vs. previous format</small></div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-number">↓</div>
+                            <div class="result-label">Sales Cycle<br><small>Friction reduced</small></div>
+                        </div>
+                    </div>
+                    <div class="business-outcome">
+                        <i class="fas fa-arrow-trend-up"></i>
+                        <div class="business-outcome-text">
+                            <strong>Business Outcome:</strong> Sales team reported shorter discovery calls — prospects already educated via content. Improved lead quality. Content became sales enablement tool, not just marketing asset.
+                        </div>
+                    </div>
+                    <div class="business-outcome" style="background: var(--bg-card); margin-top: 12px;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent-cool);"></i>
+                        <div class="business-outcome-text">
+                            <strong style="color: var(--accent-cool);">Key Learning:</strong> B2B buyers research for 6+ touchpoints before contacting sales. Our content had to work as a silent salesperson. Every post answered a question before it was asked.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content-performs">
+        <div class="section-header">
+            <div class="section-label">Execution</div>
+            <h2 class="section-title">Content That Performs</h2>
+            <p class="section-desc">Reels concepts, before/after optimization, and format innovation.</p>
+        </div>
+
+        <div class="case-section" style="margin-bottom: 40px;">
+            <div class="case-section-title">Reels / Short-form Concepts</div>
+
+            <div class="caption-box" style="border-left-color: var(--accent-vibrant);">
+                <div class="caption-label" style="color: var(--accent-vibrant);">Concept 1 — Educational Hook</div>
+                <div class="caption-text" style="margin-bottom: 12px;">
+                    <strong>Hook (0–3s):</strong> "Stop stretching your hamstrings. You're doing it wrong."<br><br>
+                    <strong>Script:</strong> 15-second educational punch with visual demonstration of correct vs. incorrect form<br><br>
+                    <strong>Visual:</strong> Split screen — wrong vs. right form, text overlay with key points<br><br>
+                    <strong>CTA:</strong> "Save this for your next leg day"
+                </div>
+            </div>
+
+            <div class="caption-box" style="margin-top: 16px; border-left-color: var(--accent-cool);">
+                <div class="caption-label" style="color: var(--accent-cool);">Concept 2 — Trend Adaptation</div>
+                <div class="caption-text" style="margin-bottom: 12px;">
+                    <strong>Trend:</strong> "Things that just make sense"<br><br>
+                    <strong>Brand twist:</strong> "Things that just make sense — wellness edition"<br><br>
+                    <strong>Execution:</strong> Quick cuts of studio rituals, client moments, instructor energy. Native editing with trending sound.<br><br>
+                    <strong>Why it works:</strong> Participates in culture without copying. Brand voice adds genuine value to the trend.
+                </div>
+            </div>
+
+            <div class="caption-box" style="margin-top: 16px; border-left-color: var(--accent-warm);">
+                <div class="caption-label" style="color: var(--accent-warm);">Concept 3 — UGC-Style Authenticity</div>
+                <div class="caption-text" style="margin-bottom: 12px;">
+                    <strong>Format:</strong> "POV: You finally found a yoga studio that..."<br><br>
+                    <strong>Visual:</strong> Client-filmed footage, minimal polish, maximum authenticity. No studio lighting, no script.<br><br>
+                    <strong>Why it works:</strong> Audiences trust "people like me" over brand content. UGC-style outperforms polished brand video by 3x.
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-title">Before / After Content Optimization</div>
+            <div class="before-after">
+                <div class="before-after-card before">
+                    <div class="ba-label before-label">Before — Low Performance</div>
+                    <div class="ba-title">Generic Welcome Post</div>
+                    <div class="ba-desc">
+                        <strong>Hook:</strong> "Welcome to our studio"<br>
+                        <strong>Format:</strong> Static image, long caption<br>
+                        <strong>CTA:</strong> "Link in bio"<br>
+                        <strong>Timing:</strong> Random posting
+                    </div>
+                    <div class="ba-why">No pain point. No interaction. No urgency.</div>
+                </div>
+                <div class="before-after-card after">
+                    <div class="ba-label after-label">After — High Performance</div>
+                    <div class="ba-title">Problem-Solution Carousel</div>
+                    <div class="ba-desc">
+                        <strong>Hook:</strong> "3 stretches that fix sitting all day"<br>
+                        <strong>Format:</strong> Carousel with 5 swipeable tips<br>
+                        <strong>CTA:</strong> "Save this + try it tomorrow. DM me how it felt"<br>
+                        <strong>Timing:</strong> 7:30 AM (commute window)
+                    </div>
+                    <div class="ba-why">Specific pain point. Interactive format. Double action + conversation starter.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies" id="performance">
+        <div class="section-header">
+            <div class="section-label">Data</div>
+            <h2 class="section-title">Performance & Reporting</h2>
+            <p class="section-desc">What I track, why it matters, and how it connects to business.</p>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-title">Metrics That Matter</div>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>What It Tells Me</th>
+                        <th>Business Connection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Engagement Rate</td>
+                        <td>Content-audience fit</td>
+                        <td>Brand health & algorithm favor</td>
+                    </tr>
+                    <tr>
+                        <td>Saves</td>
+                        <td>Purchase intent / education value</td>
+                        <td>Funnel stage indicator</td>
+                    </tr>
+                    <tr>
+                        <td>Shares</td>
+                        <td>Advocacy / viral potential</td>
+                        <td>Organic reach efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>CTR (link/story)</td>
+                        <td>Conversion readiness</td>
+                        <td>Revenue proximity</td>
+                    </tr>
+                    <tr>
+                        <td>DM Volume + Quality</td>
+                        <td>Lead generation</td>
+                        <td>Sales pipeline</td>
+                    </tr>
+                    <tr>
+                        <td>Video Completion</td>
+                        <td>Hook effectiveness</td>
+                        <td>Content optimization</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="case-section" style="margin-top: 40px;">
+            <div class="case-section-title">Reporting Rhythm</div>
+            <div class="case-text">
+                <ul>
+                    <li><strong>Weekly:</strong> Content performance snapshot — what's working, what's not, immediate pivots</li>
+                    <li><strong>Monthly:</strong> Platform trends + audience behavior shifts + competitive landscape</li>
+                    <li><strong>Quarterly:</strong> Content strategy audit + business KPI alignment + channel mix optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="community">
+        <div class="section-header">
+            <div class="section-label">Engagement</div>
+            <h2 class="section-title">Community Management</h2>
+            <p class="section-desc">Turning comments and DMs into relationship-building opportunities.</p>
+        </div>
+
+        <div class="community-grid">
+            <div class="community-card">
+                <h4><i class="fas fa-comments" style="margin-right: 8px;"></i>Tone Principles</h4>
+                <div class="case-text">
+                    <ul>
+                        <li><strong>Respond, don't just reply</strong> — add value, not just acknowledgment</li>
+                        <li><strong>Match energy</strong> — professional for B2B, playful for millennials, warm for wellness</li>
+                        <li><strong>Move public to private only when necessary</strong> — most resolution happens in comments (social proof)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="community-card">
+                <h4><i class="fas fa-reply" style="margin-right: 8px;"></i>Example Responses</h4>
+                <div class="comment-thread">
+                    <div class="comment-user">User comment:</div>
+                    <div class="comment-text">"Love this!"</div>
+                    <div class="comment-reply">
+                        <div class="comment-reply-label">Response</div>
+                        <div class="comment-text">"Thanks! Which tip are you trying first?" <em style="color: var(--text-dim);">— Extends conversation, boosts comment thread</em></div>
+                    </div>
+                </div>
+                <div class="comment-thread">
+                    <div class="comment-user">User question:</div>
+                    <div class="comment-text">"Do you offer online classes?"</div>
+                    <div class="comment-reply">
+                        <div class="comment-reply-label">Response</div>
+                        <div class="comment-text">"Yes, we have a digital membership. Sending you a DM with details right now." <em style="color: var(--text-dim);">— Immediate action + moves to conversion channel</em></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section" style="margin-top: 40px;">
+            <div class="case-section-title">Crisis Management</div>
+            <div class="crisis-card">
+                <h4><i class="fas fa-shield-halved" style="margin-right: 8px;"></i>Real-Style Scenario</h4>
+                <div class="crisis-scenario">
+                    <div class="crisis-scenario-label">Negative Comment</div>
+                    <div class="comment-text">"I was charged for a class I couldn't attend and never got a response."</div>
+                </div>
+                <div class="comment-reply" style="border-left-color: var(--accent-cool);">
+                    <div class="comment-reply-label" style="color: var(--accent-cool);">Response Strategy</div>
+                    <div class="comment-text">
+                        "I'm truly sorry about that experience — it's not the standard we hold ourselves to. Please send us a DM with your name and class date so we can resolve this today. Thank you for letting us know."
+                    </div>
+                </div>
+                <div class="case-text" style="margin-top: 20px;">
+                    <strong>Principles applied:</strong>
+                    <ul style="margin-top: 8px;">
+                        <li>Acknowledge publicly (transparency)</li>
+                        <li>Empathize without over-apologizing</li>
+                        <li>Specific action + timeline</li>
+                        <li>Move to private for details</li>
+                        <li><strong>Never defensive</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies" id="ai">
+        <div class="section-header">
+            <div class="section-label">Tools</div>
+            <h2 class="section-title">AI & Workflow</h2>
+            <p class="section-desc">How I use AI to accelerate without replacing human judgment.</p>
+        </div>
+
+        <div class="ai-grid">
+            <div class="ai-card">
+                <div class="ai-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="ai-content">
+                    <h4>Ideation</h4>
+                    <p><strong>AI:</strong> Generate 20 angles from 1 brief<br><strong>Human:</strong> Select 3 that fit brand voice</p>
+                </div>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon"><i class="fas fa-pen"></i></div>
+                <div class="ai-content">
+                    <h4>Caption Drafts</h4>
+                    <p><strong>AI:</strong> First-pass copy with keywords<br><strong>Human:</strong> Edit for tone, add cultural nuance</p>
+                </div>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon"><i class="fas fa-crop"></i></div>
+                <div class="ai-content">
+                    <h4>Content Iteration</h4>
+                    <p><strong>AI:</strong> Resize/reformat for multi-platform<br><strong>Human:</strong> Final visual judgment</p>
+                </div>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="ai-content">
+                    <h4>Analytics</h4>
+                    <p><strong>AI:</strong> Pattern detection in performance data<br><strong>Human:</strong> Strategic decision on what to change</p>
+                </div>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon"><i class="fas fa-bolt"></i></div>
+                <div class="ai-content">
+                    <h4>Trend Monitoring</h4>
+                    <p><strong>AI:</strong> Early signal detection<br><strong>Human:</strong> Contextualize if trend fits brand</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-positioning">
+            <p>"AI compresses what used to take 4 hours into 45 minutes. Those 3 hours and 15 minutes go into strategy, creative judgment, and community interaction — the things AI can't do."</p>
+        </div>
+    </section>
+
+    <section id="listening">
+        <div class="section-header">
+            <div class="section-label">Intelligence</div>
+            <h2 class="section-title">Social Listening & Insights</h2>
+            <p class="section-desc">Turning community signals into business intelligence.</p>
+        </div>
+
+        <div class="case-text" style="margin-bottom: 32px;">
+            <ul>
+                <li><strong>Track competitor content gaps</strong> — what aren't they saying that we should own?</li>
+                <li><strong>Mine comments for product insights</strong> — recurring questions = content opportunities + business intelligence</li>
+                <li><strong>Monitor sentiment shifts</strong> — detect issues before they become crises</li>
+                <li><strong>Identify micro-influencers</strong> — engaged community members with organic authority</li>
+            </ul>
+        </div>
+
+        <div class="business-outcome">
+            <i class="fas fa-bullseye" style="color: var(--accent-vibrant);"></i>
+            <div class="business-outcome-text">
+                <strong style="color: var(--accent-vibrant);">Real Example — ALAYA Studio:</strong> Multiple DMs asked about online classes in one week → proposed digital membership to founder → launched 30 days later → <strong>new revenue stream with zero ad spend</strong>. Social listening became product development intelligence.
+            </div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <div class="section-header">
+            <div class="section-label">Stack</div>
+            <h2 class="section-title">Tools & Workflow</h2>
+        </div>
+        <div class="case-section">
+            <div class="case-section-title">Production</div>
+            <div class="tools-grid">
+                <span class="tool-tag">Canva Pro</span>
+                <span class="tool-tag">Adobe Photoshop</span>
+                <span class="tool-tag">Adobe Premiere</span>
+                <span class="tool-tag">CapCut</span>
+            </div>
+        </div>
+        <div class="case-section">
+            <div class="case-section-title">Strategy & AI</div>
+            <div class="tools-grid">
+                <span class="tool-tag">ChatGPT</span>
+                <span class="tool-tag">Notion AI</span>
+                <span class="tool-tag">Google Trends</span>
+                <span class="tool-tag">AnswerThePublic</span>
+            </div>
+        </div>
+        <div class="case-section">
+            <div class="case-section-title">Scheduling & Analytics</div>
+            <div class="tools-grid">
+                <span class="tool-tag">Later</span>
+                <span class="tool-tag">Buffer</span>
+                <span class="tool-tag">Metricool</span>
+                <span class="tool-tag">Native Analytics</span>
+            </div>
+        </div>
+        <div class="case-section">
+            <div class="case-section-title">Community & Reporting</div>
+            <div class="tools-grid">
+                <span class="tool-tag">Notion</span>
+                <span class="tool-tag">Google Sheets</span>
+                <span class="tool-tag">Platform-native dashboards</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Giulia R — Social Media Strategy & Creative Execution</p>
+        <p style="margin-top: 8px; font-size: 0.75rem;">Built with intention. Designed to convert.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'absolute';
+            nav.style.top = '60px';
+            nav.style.left = '0';
+            nav.style.right = '0';
+            nav.style.flexDirection = 'column';
+            nav.style.background = 'rgba(10,10,10,0.95)';
+            nav.style.padding = '20px';
+            nav.style.backdropFilter = 'blur(20px)';
+            nav.style.borderBottom = '1px solid var(--border)';
+        }
+    </script>
+
+</body>
+</html>
